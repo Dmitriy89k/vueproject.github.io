@@ -19,7 +19,7 @@ export default {
     Footer
   },
   data: () => ({
-    //
+    authorized: false
   }),
 };
 </script>

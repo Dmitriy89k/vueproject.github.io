@@ -46,6 +46,9 @@ export default {
     goToMovie(id) {
       this.$router.push({ name: "DetailedMovie", params: { movieId: id } })
     }
+  },
+  mounted() {
+    console.log(this.$store.state.authorized)
   }
 }
 </script>
