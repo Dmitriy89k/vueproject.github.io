@@ -1,10 +1,16 @@
 <template lang="html">
 <v-container grid-list-xs,sm,md,lg,xl>
   <SearchBar @searchMovie="searchMovie"/>
-  <v-layout row  justify-space-between>
-    <v-flex xs12 sm6 md4 lg3 v-for="movie in movies" :key="movie.id">
-      <v-card  flat class="text-xs-center ma-3" height="98%">
-        <Movie
+  <v-layout justify-center align-center>
+    <ul>
+      <li v-for="artist in artists">
+        <v-btn @click="goToArtists(artist.idArtist)">View {{artist.strArtist}} details </v-btn>
+      </li>
+    </ul>
+
+    <!-- <v-flex xs12 sm6 md4 lg3 v-for="movie in movies" :key="movie.id"> -->
+      <!-- <v-card  flat class="text-xs-center ma-3" height="98%"> -->
+        <!-- <Movie
           :id="movie.id"
           :popularity="movie.popularity"
           :posterPath="movie.poster_path"
@@ -14,41 +20,45 @@
           :voteAverage="movie.vote_average"
           :overview="movie.overview"
           :releaseDate="movie.release_date"
-        />
-        <v-btn @click="goToMovie(movie.id)">open</v-btn>
-      </v-card>
-    </v-flex>
+        /> -->
+        <!-- <v-btn @click="goToMovie(movie.id)">open</v-btn> -->
+      <!-- </v-card> -->
+    <!-- </v-flex> -->
   </v-layout>
 </v-container>
 </template>
 
 <script>
 import SearchBar from './SearchBar.vue';
-import Movie from './Movie.vue';
+import Slider from './Slider';
+// import Movie from './Movie.vue';
 import axios from 'axios';
 import key from '../key.js';
 
 export default {
-  name: 'SearchMovies',
+  name: 'SearchMusic',
   components: {
     SearchBar,
-    Movie
+    Slider
+    // Movie
   },
   data: () => ({
-    movies: [],
+    artists: [],
     key: key,
   }),
   methods: {
     searchMovie(word) {
-      axios.get(`https://api.themoviedb.org/3/search/movie?query=${word}&api_key=${this.key}`)
-        .then(response => this.movies = response.data.results);
+      axios.get(`http://theaudiodb.com/api/v1/json/${this.key}/search.php?s=${word}`)
+        .then((response)=>{
+          this.artists = response.data.artists
+        });
     },
-    goToMovie(id) {
-      this.$router.push({ name: "DetailedMovie", params: { movieId: id } })
+    goToArtists(id) {
+      this.$router.push({ name: "Artist", params: {'id': id } })
     }
   },
   mounted() {
-    console.log(this.$store.state.authorized)
+    //console.log(this.$store.state.authorized)
   }
 }
 </script>

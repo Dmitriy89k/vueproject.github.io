@@ -1,13 +1,11 @@
 <template lang="html">
-  <div>
+  <div class="header">
     <v-toolbar>
-      <v-toolbar-title>TheMovieDB</v-toolbar-title>
-
+      <v-toolbar-title>The music database <i class="fas fa-headphones-alt"></i></v-toolbar-title>
       <div class="flex-grow-1"></div>
-
       <v-toolbar-items>
-        <v-btn text><router-link class="router-link" to="/movies">Movies</router-link></v-btn>
-        <v-btn text><router-link class="router-link" to="/trending">Trending</router-link></v-btn>
+        <v-btn text><router-link class="router-link" to="/movies">Music</router-link></v-btn>
+        <v-btn text><router-link class="router-link" to="/trending">Top raited</router-link></v-btn>
         <v-btn v-if="!this.$store.state.authorized" text color="success" @click="login()">Login</v-btn>
         <div v-else>
           <p>{{ $store.state.username }}</p>
