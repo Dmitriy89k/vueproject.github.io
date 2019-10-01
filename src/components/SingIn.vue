@@ -1,5 +1,6 @@
 <template>
-  <v-container fluid>
+  <v-app>
+  <v-container>
     <v-layout row wrap>
       <v-flex xs12 class="text-xs-center" mt-5>
         <h1>Sign In</h1>
@@ -31,10 +32,9 @@
       </v-flex>
     </v-layout>
   </v-container>
+</v-app>
 </template>
 
 <script>
-export default {
-    name: 'SingIn',
-};
+export default {};
 </script>

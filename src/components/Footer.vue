@@ -51,7 +51,7 @@ export default {
 
 <style lang="css">
  .footer{
-   position: absolute;
+   position: relative;
    width: 100%;
    bottom:0;
  }

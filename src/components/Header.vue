@@ -4,13 +4,8 @@
       <v-toolbar-title>The music database <i class="fas fa-headphones-alt"></i></v-toolbar-title>
       <div class="flex-grow-1"></div>
       <v-toolbar-items>
-        <v-btn text><router-link class="router-link" to="/movies">Home</router-link></v-btn>
-        <v-btn text><router-link class="router-link" to="/signin">Sing In</router-link></v-btn>
-        <v-btn v-if="!this.$store.state.authorized" text color="success" @click="login()">Sing In</v-btn>
-        <div v-else>
-          <p>{{ $store.state.username }}</p>
-          <v-btn text color="error" @click="logout()">Logout</v-btn>
-        </div>
+        <v-btn color="#009688" text><router-link class="router-link" to="/music">Home</router-link></v-btn>
+        <v-btn color="#009688" text><router-link class="router-link" to="/signin">Sing In</router-link></v-btn>
       </v-toolbar-items>
     </v-toolbar>
   </div>
@@ -34,7 +29,7 @@ data(){
      ]
     }
   },
-  
+
 }
 </script>
 
