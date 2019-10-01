@@ -33,7 +33,7 @@ export default {
     return {
       keyWord: '',
       inputRules: [
-        v => v.length >= 2 || 'Minimum length is 5 characters',
+        v => v.length >= 2 || 'Minimum length is 2 characters',
       ]
     }
   },

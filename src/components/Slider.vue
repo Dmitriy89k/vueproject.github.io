@@ -1,11 +1,11 @@
 <template>
     <div class="slider">
       <v-card
-    elevation="24"
-    max-width="500px"
+    elevation="30"
+    max-width="600px"
     class="mx-auto"
   >
-  <v-carousel height="auto" width="50%">
+  <v-carousel>
     <v-carousel-item
       v-for="(item,i) in banners"
       :key="i"

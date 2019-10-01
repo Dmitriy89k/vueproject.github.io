@@ -1,15 +1,18 @@
 <template lang="html">
   <div class="artist">
-    <v-btn @click="$router.push({ name: 'SearchMovies' })"><i class="fas fa-undo">Return</i></v-btn>
-    <div class="info">
-      <h1>Artist:{{artist.strArtist}}</h1>
+    <div class="about">
+      <h1>{{artist.strArtist}}</h1>
       <p>Style: {{artist.strStyle}}</p>
       <p>Genre: {{artist.strGenre}}</p>
       <p>Year: {{artist.intFormedYear}}</p>
       <p>Web: http://{{artist.strWebsite}}</p>
       <Slider v-if="artistImages.length > 0" v-bind:banners="artistImages"></Slider>
-      <div v-else>Opps artist have no images </div>
+      <div v-else>Opps artist have no images</div>
+      <div class="aboutArtist"><p>{{artist.strBiographyEN}}</p></div>
     </div>
+      <div class="artist_btn">
+       <v-btn color="#009688" @click="$router.push({ name: 'SearchArtist' })"><i class="fas fa-undo">Return</i></v-btn>
+      </div>
   </div>
 </template>
 
@@ -38,7 +41,7 @@ export default {
       images.push(this.artist.strArtistWideThumb);
       images.push(this.artist.strArtistFanart2);
       images.push(this.artist.strArtistFanart3);
-      return images.filter(item => item !== '')
+      return images.filter(item => item !== null)
     }
   },
   mounted(){
@@ -56,9 +59,18 @@ export default {
 <style lang="css" scoped>
 .artist{
   text-align: center;
-  margin-bottom: 200px;
+  margin-bottom: 100px;
+  /* display: flex; */
 }
-.info{
-  background-color: inherit;
+
+.artist_btn{
+  padding: 20px;
 }
+
+.aboutArtist {
+  /* max-width: 500px; */
+  text-align: center;
+  
+}
+
 </style>

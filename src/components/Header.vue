@@ -4,9 +4,9 @@
       <v-toolbar-title>The music database <i class="fas fa-headphones-alt"></i></v-toolbar-title>
       <div class="flex-grow-1"></div>
       <v-toolbar-items>
-        <v-btn text><router-link class="router-link" to="/movies">Music</router-link></v-btn>
-        <v-btn text><router-link class="router-link" to="/trending">Top raited</router-link></v-btn>
-        <v-btn v-if="!this.$store.state.authorized" text color="success" @click="login()">Login</v-btn>
+        <v-btn text><router-link class="router-link" to="/movies">Home</router-link></v-btn>
+        <v-btn text><router-link class="router-link" to="/signin">Sing In</router-link></v-btn>
+        <v-btn v-if="!this.$store.state.authorized" text color="success" @click="login()">Sing In</v-btn>
         <div v-else>
           <p>{{ $store.state.username }}</p>
           <v-btn text color="error" @click="logout()">Logout</v-btn>
@@ -19,32 +19,22 @@
 <script>
 import axios from 'axios';
 import key from '../key.js';
+import SingIn from './SingIn';
 
 export default {
   name: 'Header',
-  data: () => ({
-    key: key,
-  }),
-  methods: {
-    login() {
-      axios.get(`https://api.themoviedb.org/3/authentication/token/new?api_key=${this.key}`)
-        .then(response => {
-          window.open(`https://www.themoviedb.org/authenticate/${response.data.request_token}?redirect_to=http://localhost:8080/login/${response.data.request_token}`, "_self");
-        })
-    },
-    logout() {
-      localStorage.removeItem('sessionId');
-      this.$store.commit('setAuthorized', false);
+data(){
+    return {
+      appTitle: 'Awesome App',
+      sidebar: false,
+      menuItems: [
+          { title: 'Home', path: '/home', icon: 'home' },
+          { title: 'Sign Up', path: '/signup', icon: 'face' },
+          { title: 'Sign In', path: '/signin', icon: 'lock_open' }
+     ]
     }
   },
-  mounted() {
-    let sessionId = localStorage.getItem('sessionId');
-    if (sessionId) {
-      this.$store.commit('setAuthorized', true);
-      axios.get(`https://api.themoviedb.org/3/account?api_key=${this.key}&session_id=${sessionId}`)
-        .then(response => this.$store.commit('setUsername', response.data.username))
-    }
-  }
+  
 }
 </script>
 
