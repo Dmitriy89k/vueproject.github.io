@@ -1,13 +1,20 @@
 
 <template lang="html">
+
     <v-container grid-list-xs,sm,md,lg,xl>
         <v-layout row  justify-space-between>
             <v-flex xs12 sm6 md4 lg3 v-for="love in loved">
-                <v-card  flat class="text-xs-center ma-3" height="98%">
-                    <img :src="love.strAlbumCDart">
-                    <p>{{ loved.strArtist }}</p>
-                    <p>{{ loved.Album }}</p>
-                </v-card>
+                <v-hover v-slot:default="{ hover }">
+                    <v-card flat class="text-xs-center ma-5"
+                        :elevation="hover ? 12 : 2"
+                >
+                      <div class="albums">
+                        <p style="font-weight: bold">{{ love.strArtist }}</p>
+                        <p>{{ love.strAlbum }}</p>
+                        <img :src= love.strAlbumCDart>
+                      </div>
+                    </v-card>
+                </v-hover>
             </v-flex>
         </v-layout>
     </v-container>
@@ -23,14 +30,45 @@
          loved: []
      }),
 
+   computed: {
+       filterAlbumImg(){
+           let albumImg = [];
+           albumImg.push(this.loved.strAlbumCDart);
+           return albumImg.filter(item => item !=="")
+
+       }
+   },
 
  mounted(){
-         axios.get(`theaudiodb.com/api/v1/json/1/mostloved.php?format=album`)
-             .then((response) => {this.loved = response.data.loved});
+         axios.get(`http://theaudiodb.com/api/v1/json/1/mostloved.php?format=album`)
+             .then((response) => {
+
+              /*   response.data.loved.filter(Boolean)*/
+                 //console.log(response)
+                 this.loved = response.data.loved
+
+
+/*                 this.loved.filter(x => {
+                     console.log(!!x.strAlbumCDart)
+                     !!x.strAlbumCDart
+                 })*/
+                 //console.log(this.loved)
+                // console.log(response.data.loved)
+                // console.log(response.data.loved)
+             });
+
      }
  }
 </script>
 
 <style lang="css" scoped>
-
+    img {
+        max-width: 200px;
+        margin-bottom: 10px;
+    }
+    .albums{
+        padding-top: 10px;
+        justify-content: center;
+        text-align: center;
+    }
 </style>

@@ -1,16 +1,15 @@
 <template lang="html">
 <v-container grid-list-xs,sm,md,lg,xl>
   <SearchBar @searchMovie="searchMovie"/>
-    <TopAlbums @topAlbums="topAlbums"/>
   <v-layout justify-center align-center>
         <ul>
           <li v-for="artist in artists">
             <img :src="artist.strArtistThumb"><br>
             <v-btn @click="goToArtists(artist.idArtist)">View {{artist.strArtist}} details </v-btn>
-              <TopAlbums @topAlbums="topAlbums"/>
          </li>
         </ul>
   </v-layout>
+    <TopAlbums @topAlbums="topAlbums"/>
 </v-container>
 </template>
 
@@ -48,7 +47,7 @@ export default {
     },
 
       topAlbums(){
-          axios.get(`theaudiodb.com/api/v1/json/1/mostloved.php?format=album`)
+          axios.get(`http://theaudiodb.com/api/v1/json/1/mostloved.php?format=album`)
               .then((response) => {this.loved = response.data.loved});
       },
 
