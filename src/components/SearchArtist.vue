@@ -1,11 +1,13 @@
 <template lang="html">
 <v-container grid-list-xs,sm,md,lg,xl>
   <SearchBar @searchMovie="searchMovie"/>
+    <TopAlbums @topAlbums="topAlbums"/>
   <v-layout justify-center align-center>
         <ul>
           <li v-for="artist in artists">
             <img :src="artist.strArtistThumb"><br>
             <v-btn @click="goToArtists(artist.idArtist)">View {{artist.strArtist}} details </v-btn>
+              <TopAlbums @topAlbums="topAlbums"/>
          </li>
         </ul>
   </v-layout>
@@ -20,10 +22,12 @@ import SingIn from './SingIn';
 // import Movie from './Movie.vue';
 import axios from 'axios';
 import key from '../key.js';
+import TopAlbums from "./TopAlbums";
 
 export default {
   name: 'SearchMusic',
   components: {
+      TopAlbums,
     SearchBar,
     Slider,
     Artist,
@@ -32,6 +36,7 @@ export default {
   },
   data: () => ({
     artists: [],
+      loved: [],
     key: key,
   }),
   methods: {
@@ -41,6 +46,12 @@ export default {
           this.artists = response.data.artists
         });
     },
+
+      topAlbums(){
+          axios.get(`theaudiodb.com/api/v1/json/1/mostloved.php?format=album`)
+              .then((response) => {this.loved = response.data.loved});
+      },
+
     goToArtists(id) {
       this.$router.push({ name: "Artist", params: {'id': id } })
     }
