@@ -26,7 +26,7 @@
      </v-card-title>
 
      <v-card-actions class="grey darken-3 justify-center">
-       {{ new Date().getFullYear() }} — <strong>Beetroot Academy</strong>
+       {{ new Date().getFullYear() }} — <strong>Dmitriy Kukshyn</strong>
      </v-card-actions>
    </v-card>
  </v-footer>

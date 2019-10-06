@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="header">
     <v-toolbar>
-      <v-toolbar-title>The music database <i class="fas fa-headphones-alt"></i></v-toolbar-title>
+      <v-toolbar-title><router-link class="router-link" to="/music"><i class="fas fa-headphones-alt"></i></router-link></v-toolbar-title>
       <div class="flex-grow-1"></div>
       <v-toolbar-items>
         <v-btn color="#009688" text><router-link class="router-link" to="/music">Home</router-link></v-btn>

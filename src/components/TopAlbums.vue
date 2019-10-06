@@ -4,17 +4,18 @@
     <v-container grid-list-xs,sm,md,lg,xl>
         <h2 style="text-align: center">TOP albums of all time</h2>
         <v-layout row  justify-space-between>
-
             <v-flex xs12 sm6 md4 lg3 v-for="love in loved">
                 <v-hover v-slot:default="{ hover }">
                     <v-card flat class="text-xs-center ma-5"
                             :elevation="hover ? 12 : 2"
-                            @click="goToArtists(loved.idArtist)"
+                            @click="goToArtists(love.idArtist)"
                 >
                       <div class="albums">
                         <p style="font-weight: bold">{{ love.strArtist }}</p>
                         <p>{{ love.strAlbum }}</p>
                          <img v-if="love.strAlbumCDart" :src= "love.strAlbumCDart">
+<!--                          <img :src="filterAlbumImg()">-->
+
                       </div>
                     </v-card>
                 </v-hover>
@@ -29,6 +30,11 @@
 
  export default {
      name: 'TopAlbums',
+     components: {
+         Artist
+
+         // Movie
+     },
 
 
      data: () => ({
