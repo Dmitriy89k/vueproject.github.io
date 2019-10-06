@@ -46,13 +46,11 @@ export default {
         });
     },
 
-      topAlbums(){
-          axios.get(`http://theaudiodb.com/api/v1/json/1/mostloved.php?format=album`)
-              .then((response) => {this.loved = response.data.loved});
-      },
-
     goToArtists(id) {
-      this.$router.push({ name: "Artist", params: {'id': id } })
+      this.$router.push({
+          name: "Artist",
+          params: {'id': id }
+      })
     }
   },
 }

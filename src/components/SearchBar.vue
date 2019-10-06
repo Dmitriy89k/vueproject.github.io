@@ -6,7 +6,7 @@
           <v-flex xs3>
             <v-text-field
             name="keyWord"
-            label="Search a music"
+            label="Search an artist"
             id="keyWord"
             v-model="keyWord"
             :rules="inputRules"

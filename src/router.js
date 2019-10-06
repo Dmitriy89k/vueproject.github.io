@@ -6,6 +6,7 @@ import Trending from './components/pages/Trending.vue';
 import SignIn from './components/SingIn.vue';
 import Artist from './components/Artist.vue';
 import SearchArtist from './components/SearchArtist.vue';
+import TopAlbums from "./components/TopAlbums";
 
 export default new VueRouter({
   mode: 'history',
@@ -15,6 +16,7 @@ export default new VueRouter({
     { path: '/trending', component: Trending },
     { path: '/artist/:id', component: Artist, name: "Artist" },
     { path: '/about', component: About },
+    { path: '/TopAlbums', component: TopAlbums, name: "TopAlbums" },
     { path: "/signin", component: SignIn },
     { path: '*', component: NotFound, props: { msg: "Cannot find the page you requested" } }
   ]
